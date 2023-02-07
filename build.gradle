@@ -15,6 +15,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		//테스트(Junit)
+	
 	// devtools : 수정 변경시 자동으로 톰캣을 restart(중지 후 다시시작) : 자동 컴파일
 	// development : 실제 서비스로 빌드 할때는 빌드 되지 않도록 설정, 개발시에만 필요함.
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -26,6 +28,10 @@ dependencies {
 		https://mvnrepository.com/artifact/org.projectlombok/lombok
 		compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 	*/
+	//H2 라이브러리
+	runtimeOnly 'com.h2database:h2'	//실행시에만 작동, 테스트 환경
+	//JPA 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {
