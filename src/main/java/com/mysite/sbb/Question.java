@@ -13,7 +13,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Entity		//자바 클래스를 DataBase의 테이블과 매핑된 클래스 : 테이블명 : qeustion
@@ -29,7 +31,7 @@ public class Question {	//클래스이름 : 테이블이름
 	@Column(columnDefinition = "TEXT")	//TEXT : 최대2GB까지 저장가능
 	private String content;
 	
-	private LocalDateTime createDate;
+	private LocalDateTime createDate;	//create_date:DB
 	/*
 	@Column(length = 300)	//컬럼추가
 	private String addr;

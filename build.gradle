@@ -28,7 +28,7 @@ dependencies {
 		https://mvnrepository.com/artifact/org.projectlombok/lombok
 		compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 	*/
-	//H2 라이브러리
+	//H2 라이브러리->테스트 (DB)
 	runtimeOnly 'com.h2database:h2'	//실행시에만 작동, 테스트 환경
 	//JPA 라이브러리
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
