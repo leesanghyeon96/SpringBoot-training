@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 align = "center">sbb2 실습</h1>
+	<hr>
+	<table border = 1 align = "center" style="text-align: center">
+	<tr>
+		<th>idx</th>
+		<th>name</th>
+		<th>pass</th>
+		<th>email</th>
+		<th>regdate</th>
+		<th>cnt</th>
+	</tr>
+	
+	<tr th:each="users : ${UsersList}">
+		<td>[[${users.idx}]]</td>
+		<td>[[${users.name}]]</td>
+		<td>[[${users.pass}]]</td>
+		<td>[[${users.email}]]</td>
+		<td>[[${users.regdate}]]</td>
+		<td>[[${users.cnt}]]</td>
+	</tr>
+	</table>
+</body>
+</html>

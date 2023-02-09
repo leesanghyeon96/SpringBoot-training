@@ -8,8 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.mysite.sbb2.users.Users;
+import com.mysite.sbb2.users.UsersRepository;
+
 @SpringBootTest
-class Sbb3ApplicationTests {
+class Sbb2ApplicationTests {
 	
 	@Autowired
 	private UsersRepository usersRepository;
@@ -20,9 +23,9 @@ class Sbb3ApplicationTests {
 		
 		// 임의의 값 5개 insert
 		Users u = new Users();
-		u.setName("홍길동");
-		u.setPass("1234");
-		u.setEmail("abc@naver.com");
+		u.setName("홍길동2");
+		u.setPass("12344");
+		u.setEmail("abc1@naver.com");
 		u.setRegdate(LocalDateTime.now());
 		u.setCnt(1);
 		this.usersRepository.save(u);
