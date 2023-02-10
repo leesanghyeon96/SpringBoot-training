@@ -17,7 +17,27 @@ class Sbb2ApplicationTests {
 	@Autowired
 	private UsersRepository usersRepository;
 	
+	/* Users테이블에 값 1000개 insert */
+	@Test
+	public void insert1000() {
+		Users u = null;
+		
+		//for 문으로 값 insert
+		for(int i = 1; i <= 1000; i++) {
+			u = new Users();
+			u.setName("이름 - " + i);
+			u.setPass("pass" + i);
+			u.setEmail("메일주소 - " + i);
+			u.setRegdate(LocalDateTime.now());
+			u.setCnt(0);
+			
+			this.usersRepository.save(u);
+		}
+	}
 	
+	
+	
+	/*
 	@Test
 	public void insert() {
 		
@@ -30,6 +50,7 @@ class Sbb2ApplicationTests {
 		u.setCnt(1);
 		this.usersRepository.save(u);
 	}
+	*/
 	
 	/*
 	@Test

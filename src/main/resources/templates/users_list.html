@@ -6,6 +6,9 @@
 </head>
 <body>
 	<h1 align = "center">sbb2 실습</h1>
+	<span> 
+		<a th:href="@{|insert|}"> 새로 생성하기 </a>
+	</span>
 	<hr>
 	<table border = 1 align = "center" style="text-align: center">
 	<tr>
@@ -20,10 +23,10 @@
 	<tr th:each="users : ${UsersList}">
 		<td>[[${users.idx}]]</td>
 		<td>[[${users.name}]]</td>
-		<td>[[${users.pass}]]</td>
-		<td>[[${users.email}]]</td>
-		<td>[[${users.regdate}]]</td>
-		<td>[[${users.cnt}]]</td>
+		<td >[[${users.pass}]]</td>
+		<td >[[${users.email}]]</td>
+		<td >[[${users.regdate}]]</td>
+		<td >[[${users.cnt}]]</td>
 	</tr>
 	</table>
 </body>
