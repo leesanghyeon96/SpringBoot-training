@@ -1,15 +1,16 @@
 package com.mysite.sbb2.users;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import templates.UsersForm;
 
 @RequiredArgsConstructor
 @Controller
@@ -19,27 +20,53 @@ public class UserController {
 	
 	@GetMapping("/users/list")
 	@PostMapping("/users/list")
-	public String list(Model model) {
+	public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
 		
 		// 비즈니스 로직에서 컨트롤러가 아닌 서비스가 접근하게 변경
-		List<Users> lu = this.usersService.getList();
+	//	List<Users> lu = this.usersService.getList();
 				//this.usersRepository.findAll();
 		
-		model.addAttribute("UsersList", lu);
+		//비즈니스 로직 처리
+		Page<Users> paging =
+				this.usersService.getList(page);
+		
+		//model.addAttribute("UsersList", lu);
+		
+		model.addAttribute("paging", paging);
 		
 		return "users_list";
 	}
 	
+	
 	// insert 페이지로 가는 메소드
-	@GetMapping("users/insert")
-	public String insert(Model model) {
+	@GetMapping("/users/insert")
+	public String insert(UsersForm usersForm) {
 		
 		return "users_insert";
 	}
 	
+	// insert 페이지로 가는 메소드
+	@PostMapping("/create")
+	public String insert(
+			@Valid UsersForm usersForm, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			return "users_insert";
+		}
+		
+		this.usersService.create(usersForm.getName(), usersForm.getPass(), usersForm.getEmail());
+		
+		return "redirect:/users/list";
+	}
+	
+	
+	
+	
+	
+	
 	
 	// insert페이지에서 값 넣기
-	@PostMapping("/create")
+	/*@PostMapping("/create")
 	public String createUser(Model model, @RequestParam String name,
 			@RequestParam String pass ,@RequestParam String email) {
 		
@@ -50,7 +77,7 @@ public class UserController {
 		
 		
 		return String.format("redirect:/users/list");
-	}
+	}*/
 			
 			
 			

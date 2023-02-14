@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<!-- Bootstrap CSS Import -->
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+
+<title>layout</title>
+</head>
+<body>
+	<!-- 최상단의 네이게이션 바 (Nav Bar) 생성 -->
+	<!-- 외부의 navbar.html import -->
+	<nav th:replace="~{navbar::navbarfragment}"></nav>
+	
+	<!-- 기본 탬플릿에 삽입할 내용 - Start --> 
+	<th:block layout:fragment="content"></th:block>
+	<!-- 기본 탬플릿에 삽입할 내용 - End -->
+	
+	<!-- 부트스트랩 자바 스크립트 import -->
+	<script th:src="@{/bootstrap.min.js}"></script>
+
+</body>
+</html>

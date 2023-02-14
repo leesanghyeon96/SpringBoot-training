@@ -1,28 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form th:action="@{|/create|}" method="post">
+<html layout:decorate="~{Layout}">
+
+<div layout:fragment="content" class="container my-3">
+
+	<form th:action="@{|/create|}" th:object="${usersForm}" method="post">
+	
+	 <div th:replace="~{form_error::formErrorsFragment}"></div>
+	
 	<table>
-		<tr>
-			<th>이름 : </th>
-			<th><input type="text" name="name" value="name"></th>
+		<tr class="mb-3">
+			<th for="name" class="form-label">이름 : </th>
+			<th><input type="text" name="name" th:field="*{name}" id="name" class="form-control"></th>
 		</tr>
-		<tr>
-			<th>pass : </th>
-			<th><input type="text" name="pass" value="pass"></th>
-		</tr>		<tr>
-			<th>email : </th>
-			<th><input type="text" name="email" value="email"></th>
+		<tr class="mb-3">
+			<th for="pass" class="form-label">pass : </th>
+			<th><input type="text" name="pass" th:field="*{pass}" id="pass" class="form-control"></th>
+		</tr>		
+		<tr class="mb-3">
+			<th for="email" class="form-label">email : </th>
+			<th><input type="text" name="email" th:field=*{email} id="email" class="form-control"></th>
 		</tr>
 		<tr>
 			<td colspan=2><input type="submit" value="제출"></td>
 		</tr>
 	
 	</table>
+	
 	</form>
-</body>
+	
+</div>
 </html>

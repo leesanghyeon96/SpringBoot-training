@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html layout:decorate="~{Layout}">
+<div layout:fragment="content" class="container my-3">
+
 	<h1 align = "center">sbb2 실습</h1>
 	<span> 
 		<a th:href="@{|insert|}"> 새로 생성하기 </a>
@@ -20,7 +16,7 @@
 		<th>cnt</th>
 	</tr>
 	
-	<tr th:each="users : ${UsersList}">
+	<tr th:each="users : ${paging}">
 		<td>[[${users.idx}]]</td>
 		<td>[[${users.name}]]</td>
 		<td >[[${users.pass}]]</td>
@@ -29,5 +25,43 @@
 		<td >[[${users.cnt}]]</td>
 	</tr>
 	</table>
-</body>
+	
+	<!-- 하단 페이징 처리 시작 -->
+	   <div th:if=${!paging.isEmpty()}>
+   		<!-- !pageing.isEmpty(): paging의 값이 비어있지 않다면 div블락 처리 -->
+   		<ul class="pagination justify-content-center">
+   			<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+   				<!-- 이전 페이지가 존재하지 않는다면 이전의 링크를 비활성화 -->
+   				<!-- !paging.hasPrevious}? 'disabled' : 조건? '참일시 작동' -->
+   				
+   				<!-- paging.number : 현재 페이지 -->
+   				<a class="page-link" th:href="@{|?page=${paging.number-1}|}"><!-- ||:붙여쓰기 -->
+   					이전   			
+   				</a>
+   			</li>
+   			
+   			<!-- 첫페이지 부터 마지막 페이지까지 루프를 돌려서 출력 -->
+   			<li th:each="page : ${#numbers.sequence(0,paging.totalPages-1)}"
+   				th:if="${page >= paging.number-5 and page <= paging.number+5}"
+   				th:classappend="${page==paging.number} ? 'active'" class="page-item">
+   				 <!-- 위의 가운데 코드는  -->
+   				<a th:text=${page} class="page-link" th:href="@{|?page=${page}|}"></a>
+   				<!-- th:text: -->
+   			</li>
+   			
+   			<!-- 다음을 처리하는 블락 -->
+   			<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+   				<a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+   					다음
+				</a>   			
+   			</li>
+   		</ul>
+   </div>
+   
+   <!-- 하단 페이징 처리 끝 -->
+	
+	
+	
+</div>	
+
 </html>
